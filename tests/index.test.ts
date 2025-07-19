@@ -42,6 +42,267 @@ describe("Duration", () => {
     });
   });
 
+  describe("of", () => {
+    it("should be an alias for from method", () => {
+      const duration1 = Duration.from({ years: 1, days: 1 });
+      const duration2 = Duration.of({ years: 1, days: 1 });
+      expect(duration1.milliseconds).toBe(duration2.milliseconds);
+    });
+
+    it("should handle all units", () => {
+      const duration = Duration.of({
+        years: 1,
+        months: 1,
+        days: 1,
+        hours: 1,
+        minutes: 1,
+        seconds: 1,
+        milliseconds: 1,
+      });
+      const expected =
+        31536000000 + 2592000000 + 86400000 + 3600000 + 60000 + 1000 + 1;
+      expect(duration.milliseconds).toBe(expected);
+    });
+
+    it("should handle empty object", () => {
+      const duration = Duration.of({});
+      expect(duration.milliseconds).toBe(0);
+    });
+  });
+
+  describe("fromMilliseconds and ofMilliseconds", () => {
+    it("should create Duration from milliseconds", () => {
+      const duration = Duration.fromMilliseconds(1500);
+      expect(duration.milliseconds).toBe(1500);
+    });
+
+    it("should handle zero milliseconds", () => {
+      const duration = Duration.fromMilliseconds(0);
+      expect(duration.milliseconds).toBe(0);
+    });
+
+    it("should handle negative milliseconds", () => {
+      const duration = Duration.fromMilliseconds(-500);
+      expect(duration.milliseconds).toBe(-500);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromMilliseconds(1000);
+      const duration2 = Duration.ofMilliseconds(1000);
+      expect(duration1.milliseconds).toBe(duration2.milliseconds);
+    });
+  });
+
+  describe("fromSeconds and ofSeconds", () => {
+    it("should create Duration from seconds", () => {
+      const duration = Duration.fromSeconds(5);
+      expect(duration.seconds).toBe(5);
+      expect(duration.milliseconds).toBe(5000);
+    });
+
+    it("should handle zero seconds", () => {
+      const duration = Duration.fromSeconds(0);
+      expect(duration.seconds).toBe(0);
+    });
+
+    it("should handle negative seconds", () => {
+      const duration = Duration.fromSeconds(-3);
+      expect(duration.seconds).toBe(-3);
+    });
+
+    it("should handle fractional seconds", () => {
+      const duration = Duration.fromSeconds(2.5);
+      expect(duration.seconds).toBe(2.5);
+      expect(duration.milliseconds).toBe(2500);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromSeconds(10);
+      const duration2 = Duration.ofSeconds(10);
+      expect(duration1.seconds).toBe(duration2.seconds);
+    });
+  });
+
+  describe("fromMinutes and ofMinutes", () => {
+    it("should create Duration from minutes", () => {
+      const duration = Duration.fromMinutes(3);
+      expect(duration.minutes).toBe(3);
+      expect(duration.seconds).toBe(180);
+    });
+
+    it("should handle zero minutes", () => {
+      const duration = Duration.fromMinutes(0);
+      expect(duration.minutes).toBe(0);
+    });
+
+    it("should handle negative minutes", () => {
+      const duration = Duration.fromMinutes(-2);
+      expect(duration.minutes).toBe(-2);
+    });
+
+    it("should handle fractional minutes", () => {
+      const duration = Duration.fromMinutes(1.5);
+      expect(duration.minutes).toBe(1.5);
+      expect(duration.seconds).toBe(90);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromMinutes(5);
+      const duration2 = Duration.ofMinutes(5);
+      expect(duration1.minutes).toBe(duration2.minutes);
+    });
+  });
+
+  describe("fromHours and ofHours", () => {
+    it("should create Duration from hours", () => {
+      const duration = Duration.fromHours(2);
+      expect(duration.hours).toBe(2);
+      expect(duration.minutes).toBe(120);
+    });
+
+    it("should handle zero hours", () => {
+      const duration = Duration.fromHours(0);
+      expect(duration.hours).toBe(0);
+    });
+
+    it("should handle negative hours", () => {
+      const duration = Duration.fromHours(-1);
+      expect(duration.hours).toBe(-1);
+    });
+
+    it("should handle fractional hours", () => {
+      const duration = Duration.fromHours(1.5);
+      expect(duration.hours).toBe(1.5);
+      expect(duration.minutes).toBe(90);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromHours(3);
+      const duration2 = Duration.ofHours(3);
+      expect(duration1.hours).toBe(duration2.hours);
+    });
+  });
+
+  describe("fromDays and ofDays", () => {
+    it("should create Duration from days", () => {
+      const duration = Duration.fromDays(1);
+      expect(duration.days).toBe(1);
+      expect(duration.hours).toBe(24);
+    });
+
+    it("should handle zero days", () => {
+      const duration = Duration.fromDays(0);
+      expect(duration.days).toBe(0);
+    });
+
+    it("should handle negative days", () => {
+      const duration = Duration.fromDays(-2);
+      expect(duration.days).toBe(-2);
+    });
+
+    it("should handle fractional days", () => {
+      const duration = Duration.fromDays(0.5);
+      expect(duration.days).toBe(0.5);
+      expect(duration.hours).toBe(12);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromDays(7);
+      const duration2 = Duration.ofDays(7);
+      expect(duration1.days).toBe(duration2.days);
+    });
+  });
+
+  describe("fromWeeks and ofWeeks", () => {
+    it("should create Duration from weeks", () => {
+      const duration = Duration.fromWeeks(1);
+      expect(duration.weeks).toBe(1);
+      expect(duration.days).toBe(7);
+    });
+
+    it("should handle zero weeks", () => {
+      const duration = Duration.fromWeeks(0);
+      expect(duration.weeks).toBe(0);
+    });
+
+    it("should handle negative weeks", () => {
+      const duration = Duration.fromWeeks(-1);
+      expect(duration.weeks).toBe(-1);
+    });
+
+    it("should handle fractional weeks", () => {
+      const duration = Duration.fromWeeks(0.5);
+      expect(duration.weeks).toBe(0.5);
+      expect(duration.days).toBe(3.5);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromWeeks(2);
+      const duration2 = Duration.ofWeeks(2);
+      expect(duration1.weeks).toBe(duration2.weeks);
+    });
+  });
+
+  describe("fromMonths and ofMonths", () => {
+    it("should create Duration from months", () => {
+      const duration = Duration.fromMonths(1);
+      expect(duration.months).toBe(1);
+      expect(duration.days).toBe(30);
+    });
+
+    it("should handle zero months", () => {
+      const duration = Duration.fromMonths(0);
+      expect(duration.months).toBe(0);
+    });
+
+    it("should handle negative months", () => {
+      const duration = Duration.fromMonths(-3);
+      expect(duration.months).toBe(-3);
+    });
+
+    it("should handle fractional months", () => {
+      const duration = Duration.fromMonths(0.5);
+      expect(duration.months).toBe(0.5);
+      expect(duration.days).toBe(15);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromMonths(6);
+      const duration2 = Duration.ofMonths(6);
+      expect(duration1.months).toBe(duration2.months);
+    });
+  });
+
+  describe("fromYears and ofYears", () => {
+    it("should create Duration from years", () => {
+      const duration = Duration.fromYears(1);
+      expect(duration.years).toBe(1);
+      expect(duration.days).toBe(365);
+    });
+
+    it("should handle zero years", () => {
+      const duration = Duration.fromYears(0);
+      expect(duration.years).toBe(0);
+    });
+
+    it("should handle negative years", () => {
+      const duration = Duration.fromYears(-1);
+      expect(duration.years).toBe(-1);
+    });
+
+    it("should handle fractional years", () => {
+      const duration = Duration.fromYears(0.5);
+      expect(duration.years).toBe(0.5);
+      expect(duration.days).toBe(182.5);
+    });
+
+    it("should be aliases of each other", () => {
+      const duration1 = Duration.fromYears(2);
+      const duration2 = Duration.ofYears(2);
+      expect(duration1.years).toBe(duration2.years);
+    });
+  });
+
   describe("getters", () => {
     const duration = Duration.fromString("1d");
 
