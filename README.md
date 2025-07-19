@@ -1,7 +1,7 @@
 # pv-duration
 
 [![npm version](https://badge.fury.io/js/pv-duration.svg)](https://badge.fury.io/js/pv-duration)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/polvallverdu/pv-duration/ci.yml?branch=main)](https://github.com/polvallverdu/pv-duration/actions)
 [![Coverage](https://img.shields.io/codecov/c/github/polvallverdu/pv-duration)](https://codecov.io/gh/polvallverdu/pv-duration)
@@ -323,7 +323,7 @@ Thanks to these wonderful people who have contributed to this project:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 🙋‍♂️ Support
 
