@@ -2,7 +2,7 @@
   "name": "pv-duration",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library for working with durations",
   "license": "Apache-2.0",
   "repository": {
