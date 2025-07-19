@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  merge_group:
+
+jobs:
+  typecheck:
+    name: Typecheck
+    permissions:
+      checks: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/setup
+
+      - name: Typecheck
+        run: bun typecheck
+
+  check:
+    name: Check (lint & format)
+    permissions:
+      checks: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/setup
+
+      - name: Check
+        run: bun check
+
+  test:
+    name: Test
+    permissions:
+      checks: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/setup
+
+      - name: Test
+        run: bun test
