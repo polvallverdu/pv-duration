@@ -114,6 +114,80 @@ const duration = Duration.from({
 });
 ```
 
+### `Duration.of(duration: Partial<DurationObject>)`
+
+Alias for `Duration.from()`. Creates a Duration from an object with time units.
+
+**Example:**
+
+```typescript
+const duration = Duration.of({
+  hours: 1,
+  minutes: 30,
+  seconds: 45,
+});
+```
+
+### Unit-specific Creation Methods
+
+For convenience, you can create Duration objects directly from specific time units:
+
+#### `Duration.fromMilliseconds(milliseconds: number)` / `Duration.ofMilliseconds(milliseconds: number)`
+
+```typescript
+const duration = Duration.fromMilliseconds(1500); // 1.5 seconds
+const duration2 = Duration.ofMilliseconds(1500); // Same as above
+```
+
+#### `Duration.fromSeconds(seconds: number)` / `Duration.ofSeconds(seconds: number)`
+
+```typescript
+const duration = Duration.fromSeconds(30); // 30 seconds
+const duration2 = Duration.ofSeconds(30); // Same as above
+```
+
+#### `Duration.fromMinutes(minutes: number)` / `Duration.ofMinutes(minutes: number)`
+
+```typescript
+const duration = Duration.fromMinutes(45); // 45 minutes
+const duration2 = Duration.ofMinutes(45); // Same as above
+```
+
+#### `Duration.fromHours(hours: number)` / `Duration.ofHours(hours: number)`
+
+```typescript
+const duration = Duration.fromHours(2.5); // 2.5 hours
+const duration2 = Duration.ofHours(2.5); // Same as above
+```
+
+#### `Duration.fromDays(days: number)` / `Duration.ofDays(days: number)`
+
+```typescript
+const duration = Duration.fromDays(7); // 1 week
+const duration2 = Duration.ofDays(7); // Same as above
+```
+
+#### `Duration.fromWeeks(weeks: number)` / `Duration.ofWeeks(weeks: number)`
+
+```typescript
+const duration = Duration.fromWeeks(2); // 2 weeks
+const duration2 = Duration.ofWeeks(2); // Same as above
+```
+
+#### `Duration.fromMonths(months: number)` / `Duration.ofMonths(months: number)`
+
+```typescript
+const duration = Duration.fromMonths(6); // 6 months (180 days)
+const duration2 = Duration.ofMonths(6); // Same as above
+```
+
+#### `Duration.fromYears(years: number)` / `Duration.ofYears(years: number)`
+
+```typescript
+const duration = Duration.fromYears(1); // 1 year (365 days)
+const duration2 = Duration.ofYears(1); // Same as above
+```
+
 ### Properties
 
 All Duration instances provide getters for different time units:
@@ -138,14 +212,21 @@ duration.years; // Get duration in years
 ```typescript
 import { Duration } from "pv-duration";
 
-// Create durations
-const meeting = Duration.fromString("1h 30m"); // Error: Not supported yet
+// Create durations using different methods
 const meeting = Duration.from({ hours: 1, minutes: 30 });
+const meeting2 = Duration.of({ hours: 1, minutes: 30 }); // Same as above
 const break_time = Duration.fromString("15m");
+
+// Using unit-specific methods
+const quick_break = Duration.fromMinutes(15);
+const long_meeting = Duration.fromHours(2.5);
+const project_duration = Duration.fromDays(30);
 
 // Get total minutes
 console.log(meeting.minutes); // 90
 console.log(break_time.minutes); // 15
+console.log(quick_break.minutes); // 15
+console.log(long_meeting.hours); // 2.5
 
 // Convert between units
 const milliseconds = Duration.fromString("2s").milliseconds; // 2000
@@ -167,7 +248,23 @@ const complexDuration = Duration.from({
   minutes: 30,
 });
 
+// Using unit-specific methods
+const preciseDuration = Duration.fromMilliseconds(1500);
+const minuteDuration = Duration.fromMinutes(30);
+const hourDuration = Duration.fromHours(2.5);
+const dayDuration = Duration.fromDays(7);
+const weekDuration = Duration.fromWeeks(1);
+const monthDuration = Duration.fromMonths(6);
+const yearDuration = Duration.fromYears(1);
+
+// Using 'of' aliases
+const alternativeDuration = Duration.of({ hours: 3, minutes: 45 });
+const alternativeSeconds = Duration.ofSeconds(90);
+
 console.log(complexDuration.hours); // 36.5 (1.5 days = 36.5 hours)
+console.log(preciseDuration.seconds); // 1.5
+console.log(weekDuration.days); // 7
+console.log(monthDuration.days); // 180
 ```
 
 ## 🛠️ Development
