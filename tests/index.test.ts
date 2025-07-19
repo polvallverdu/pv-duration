@@ -581,10 +581,10 @@ describe("Duration", () => {
 
         expect(duration.format({ maxUnits: 1 })).toBe("2 days");
         expect(duration.format({ maxUnits: 3 })).toBe(
-          "2 days, 3 hours, 45 minutes"
+          "2 days, 3 hours, 45 minutes",
         );
         expect(duration.format({ maxUnits: 4 })).toBe(
-          "2 days, 3 hours, 45 minutes, 30 seconds"
+          "2 days, 3 hours, 45 minutes, 30 seconds",
         );
       });
 

@@ -389,7 +389,7 @@ export class Duration {
       maxUnits?: number;
       /** Whether to use short unit names (default: false) */
       short?: boolean;
-    } = {}
+    } = {},
   ): string {
     const { maxUnits = 2, short = false } = options;
 
